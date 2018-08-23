@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SuperHero Showdown</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+
+    <!-- UIkit CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" /> -->
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style1.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-title">
+                    <p class="text top-left">Introducing...</p>
+                    <h1 id="title">SuperHero Showdown</h1>
+                    <p class="text bottom-right">...it's super fun!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel">
+                    <p class="text top-left">Player 1...</p>
+                    <h4 id="player-1-name">Waiting for player to join</h4>
+                    <div id="name-join-1">
+                        <input class="uk-input" placeholder="Enter name here..." id="name" type="text" name="" value="">
+                        <button class="uk-button uk-button-primary" id="join" type="button" name="button">Add Player</button>
+                    </div>
+                    <span id="wins-losses-1">
+                        <h4 class="wins-position">Wins:
+                            <span id="player-1-wins"></span>
+                        </h4>
+                        <h4 class="losses-position">Losses:
+                            <span id="player-1-losses"></span>
+                        </h4>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel">
+                    <p class="text top-left">Time remaining...</p>
+                    <br />
+                    <button class="uk-button uk-button-primary" id="startgame" type="button" name="button">Start Game</button>
+                    <div class="timer text-center"></div>
+                    <p class="text bottom-right">...hurry before it's too late!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel">
+                    <p class="text top-left">Player 2...</p>
+                    <h4 id="player-2-name">Waiting for player to join</h4>
+                    <div id="name-join-2">
+                        <input class="uk-input" placeholder="Enter name here..." id="name2" type="text" name="" value="">
+                        <button class="uk-button uk-button-primary" id="join2" type="button" name="button">Add Player</button>
+                    </div>
+                    <span id="wins-losses-2">
+                        <h4 class="wins-position">Wins:
+                            <span id="player-2-wins">0</span>
+                        </h4>
+                        <h4 class="losses-position">Losses:
+                            <span id="player-2-losses">0</span>
+                        </h4>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel" style="height:275px !important;">
+                    <p class="text top-left">Defeat crime by answering this question...</p>
+                    <br />
+                    <h2 style="text-align:left" class="question"></h2>
+                    <div id="questionDisplay">
+                        <button type="button" class="btn btn-lg btn-primary choice Ch1"></button>
+                        <button type="button" class="btn btn-lg btn-primary choice Ch2"></button>
+                        <button type="button" class="btn btn-lg btn-primary choice Ch3"></button>
+                        <button type="button" class="btn btn-lg btn-primary choice Ch4"></button>
+                    </div>
+                    <p class="text bottom-right">...think fast to win!</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel" style="height:275px !important;">
+                    <div class="image-of-character"> </div>
+                    <button class="uk-button uk-button-primary" id="reset" type="button" name="button">Quit Game</button>
+                    <p class="text bottom-right">...the end!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- <div id="player-name-and-reset-container">
+    <div id="name-join">
+      <input class="uk-input" placeholder="player-name" id="name" type="text" name="" value="">
+      <button class="uk-button uk-button-primary" id="join" type="button" name="button">Add Player</button>
+    </div>
+
+    <div>
+      <button class="uk-button uk-button-primary" id="reset" type="button" name="button">Change Players</button>
+    </div>
+  </div> -->
+
+    <!-- <div id="player-slot"> URL section(Delete this later) </div> -->
+
+
+    <!-- <div id="container">
+    <div class="box player-join">
+      <h3 id="player-1-name">Waiting for Player 1</h3>
+      <p id="wins-losses-1">Wins:
+        <span id="player-1-wins"></span> Losses:
+        <span id="player-1-losses"></span>
+      </p>
+    </div>
+    <div class="middle">
+      <div class="box">
+        Let the games Begin!!
+        <br>
+        <br>
+        <a href="#" id="startgame" class="btn btn-primary btn-lg">START GAME</a>
+        <br>
+        <div class="timer text-center"></div>
+      </div>
+    </div>
+
+
+  <div id="questions-container" class="box quiz">
+    <div > -->
+    <!-- <div class="timer text-center"></div> -->
+    <!-- <div class="question">Q</div>
+      <div class="choice Ch1">1</div>
+      <div class="choice Ch2">2</div>
+      <div class="choice Ch3">3</div>
+      <div class="choice Ch4">4</div>
+      <div class="picture"></div>
+    </div>
+    <div class="image-of-character">
+    </div>
+  </div> -->
+    <!-- </div> -->
+
+
+    <script src="assets/js/app.js" charset="utf-8"></script>
+</body>
+
+</html>
